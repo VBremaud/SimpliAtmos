@@ -32,4 +32,4 @@ jobs:
 
       - name: Deploy documentation
         if: success()
-        run: julia --project=docs -e 'import Pkg; Pkg.add("Documenter"); using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true)'
+        run: julia --project=docs -e 'using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true)'
