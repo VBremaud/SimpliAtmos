@@ -1,3 +1,7 @@
+name = "SimpliAtmos"
+uuid = "ab37e03a-757d-4c43-905d-942e52329f9d"
+version = "0.1.0"
+
 [deps]
 CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
 ClimaCore = "d414da3d-4745-48bb-8d80-42e94e092884"

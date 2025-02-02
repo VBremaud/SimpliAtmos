@@ -1,0 +1,22 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.11.3'
+      - name: Install Dependencies
+        run: julia -e 'import Pkg; Pkg.instantiate()'
+      - name: Run Tests
+        run: julia -e 'import Pkg; Pkg.test()'
