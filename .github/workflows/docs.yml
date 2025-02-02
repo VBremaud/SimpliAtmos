@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - dev-initial
-      
+
   pull_request:
     branches:
       - main
@@ -25,7 +25,7 @@ jobs:
           version: '1.11'
 
       - name: Install dependencies
-        run: julia --project=docs -e 'import Pkg; Pkg.develop(PackageSpec(path=".")); Pkg.instantiate()'
+        run: julia --project=docs -e 'import Pkg; Pkg.instantiate()'
 
       - name: Build documentation
         run: julia --project=docs docs/make.jl
