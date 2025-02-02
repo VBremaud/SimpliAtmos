@@ -32,6 +32,6 @@ jobs:
         with:
           version: '1.11.3'
       - name: Install CUDA.jl
-        run: julia -e 'import Pkg; Pkg.add("CUDA")'
+        run: julia -e 'import Pkg; Pkg.add("CUDA"); Pkg.instantiate()'
       - name: Run GPU Tests
         run: julia --project=. -e 'include("test/test_gpu.jl")'
