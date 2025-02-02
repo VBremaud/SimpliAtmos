@@ -1,0 +1,35 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - main
+      - dev-initial
+      
+  pull_request:
+    branches:
+      - main
+      - dev-initial
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.11'
+
+      - name: Install dependencies
+        run: julia --project=docs -e 'import Pkg; Pkg.develop(PackageSpec(path=".")); Pkg.instantiate()'
+
+      - name: Build documentation
+        run: julia --project=docs docs/make.jl
+
+      - name: Deploy documentation
+        if: success()
+        run: julia --project=docs -e 'import Pkg; Pkg.add("Documenter"); using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true)'
