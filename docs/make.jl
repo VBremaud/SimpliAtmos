@@ -9,4 +9,4 @@ makedocs(
     pages = ["Home" => "index.md", "Fonctions" => "functions.md"];
 )
 
-deploydocs(repo = "github.com/VBremaud/SimpliAtmos.git", push_preview = true)
+# deploydocs(repo = "github.com/VBremaud/SimpliAtmos.git", push_preview = true)

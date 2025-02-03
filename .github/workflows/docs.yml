@@ -42,3 +42,10 @@ jobs:
         run: julia --project=docs -e 'using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true, devbranch = "dev-initial", forcepush = true, branch="gh-pages")'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check Git status after deploy
+        run: |
+          git checkout gh-pages
+          git log -n 3
+          git status
+          git diff --name-only HEAD^
