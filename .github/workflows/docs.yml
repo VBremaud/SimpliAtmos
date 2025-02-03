@@ -9,6 +9,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # Nécessaire pour autoriser le push sur gh-pages
+  
 jobs:
   docs:
     runs-on: ubuntu-latest
