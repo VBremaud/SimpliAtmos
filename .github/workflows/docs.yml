@@ -48,7 +48,10 @@ jobs:
 
       - name: Check Git status after deploy
         run: |
-          git checkout gh-pages
+          git branch -a
+          git fetch --all
+          git branch -a
+          git checkout origin/gh-pages
           git status
           git log -n 3
           git diff --stat HEAD~1 HEAD
@@ -57,7 +60,6 @@ jobs:
       - name: Force push to upstream gh-pages
         run: |
           git fetch --all
-          git checkout gh-pages
           git reset --hard origin/gh-pages
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions[bot]"
