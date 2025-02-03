@@ -57,12 +57,12 @@ jobs:
           git diff --stat HEAD~1 HEAD
 
 
-      - name: Force push to upstream gh-pages
+      - name: Fix Git state and push missing files
         run: |
-          git fetch --all
-          git reset --hard origin/gh-pages
+          git fetch origin gh-pages --unshallow  # Récupérer l'historique complet
+          git checkout gh-pages || git checkout -b gh-pages
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions[bot]"
-          git add .
-          git commit -m "Force update GitHub Pages" || echo "No changes to commit"
+          git add --all
+          git commit -m "Force add missing files" || echo "No changes to commit"
           git push origin gh-pages --force
