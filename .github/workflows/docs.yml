@@ -30,6 +30,6 @@ jobs:
 
       - name: Deploy documentation
         if: success()
-        run: julia --project=docs -e 'using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true, branch="gh-pages")'
+        run: julia --project=docs -e 'using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true, devbranch = "dev-initial", forcepush = true, branch="gh-pages")'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
