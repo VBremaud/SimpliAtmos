@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: write  # Nécessaire pour autoriser le push sur gh-pages
-  
+
 jobs:
   docs:
     runs-on: ubuntu-latest
@@ -30,6 +30,12 @@ jobs:
 
       - name: Build documentation
         run: julia --project=docs docs/make.jl
+
+      - name: Debugging - List generated documentation files
+        run: |
+          ls -l docs/build/
+          cat docs/build/index.html
+
 
       - name: Deploy documentation
         if: success()
