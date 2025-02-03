@@ -46,10 +46,6 @@ jobs:
       - name: Debug deployed files
         run: ls -l docs/build/
 
-      - name: Check files in temporary repo after deploydocs
-        run: |
-          ls -l /tmp/j*/docs/build/
-
       - name: Check Git status after deploy
         run: |
           git checkout gh-pages
