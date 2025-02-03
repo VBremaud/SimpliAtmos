@@ -43,9 +43,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check Git status after deploy
-        run: |
-          git checkout gh-pages
-          git log -n 3
-          git status
-          git diff --name-only HEAD^
+      - name: Force push to upstream gh-pages
+          run: |
+            git fetch --all
+            git checkout gh-pages
+            git reset --hard upstream/gh-pages
+            git add .
+            git commit -m "Force update GitHub Pages" || echo "No changes to commit"
+            git push origin gh-pages --force
