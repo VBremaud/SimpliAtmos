@@ -47,7 +47,7 @@ jobs:
         run: |
           git fetch --all
           git checkout gh-pages
-          git reset --hard upstream/gh-pages
+          git reset --hard origin/gh-pages
           git add .
           git commit -m "Force update GitHub Pages" || echo "No changes to commit"
           git push origin gh-pages --force
