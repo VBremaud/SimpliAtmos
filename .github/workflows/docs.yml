@@ -43,11 +43,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Debug deployed files
+        run: ls -l docs/build/
+
+      - name: Check files in temporary repo after deploydocs
+        run: |
+          ls -l /tmp/j_*/build/
+
+      - name: Check Git status after deploy
+        run: |
+          git checkout gh-pages
+          git status
+          git log -n 3
+          git diff --stat HEAD~1 HEAD
+
+
       - name: Force push to upstream gh-pages
         run: |
           git fetch --all
           git checkout gh-pages
           git reset --hard origin/gh-pages
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
           git add .
           git commit -m "Force update GitHub Pages" || echo "No changes to commit"
           git push origin gh-pages --force
