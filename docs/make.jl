@@ -16,4 +16,4 @@ deploydocs(
     devbranch = "dev-initial",
     forcepush = true,
     branch = "gh-pages",
-)'
+)
