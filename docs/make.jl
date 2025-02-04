@@ -10,3 +10,10 @@ makedocs(
 )
 
 # deploydocs(repo = "github.com/VBremaud/SimpliAtmos.git", push_preview = true)
+deploydocs(
+    repo = "github.com/VBremaud/SimpliAtmos.git",
+    push_preview = true,
+    devbranch = "dev-initial",
+    forcepush = true,
+    branch = "gh-pages",
+)'

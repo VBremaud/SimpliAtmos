@@ -28,41 +28,8 @@ jobs:
       - name: Install dependencies
         run: julia --project=docs -e 'import Pkg; Pkg.develop(path="."); Pkg.instantiate()'
 
-      - name: Build documentation
-        run: julia --project=docs docs/make.jl
-
-      - name: Debugging - List generated documentation files
-        run: |
-          ls -l docs/build/
-          cat docs/build/index.html
-
-
-      - name: Deploy documentation
-        if: success()
-        run: julia --project=docs -e 'using Documenter; Documenter.deploydocs(repo="github.com/VBremaud/SimpliAtmos.git", push_preview=true, devbranch = "dev-initial", forcepush = true, branch="gh-pages")'
+      - name: Build and deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Debug deployed files
-        run: ls -l docs/build/
-
-      - name: Check Git status after deploy
-        run: |
-          git branch -a
-          git fetch --all
-          git branch -a
-          git checkout origin/gh-pages
-          git status
-          git log -n 3
-          git diff --stat HEAD~1 HEAD
-
-
-      - name: Fix Git state and push missing files
-        run: |
-          git fetch origin gh-pages --unshallow  # Récupérer l'historique complet
-          git checkout gh-pages || git checkout -b gh-pages
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "github-actions[bot]"
-          git add --all
-          git commit -m "Force add missing files" || echo "No changes to commit"
-          git push origin gh-pages --force
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # If authenticating with GitHub Actions token
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # If authenticating with SSH deploy key
+        run: julia --project=docs/ docs/make.jl
