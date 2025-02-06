@@ -11,7 +11,9 @@ on:
 
 permissions:
   contents: write  # Nécessaire pour autoriser le push sur gh-pages
-
+  pages: write
+  id-token: write
+  pull-requests: read
 jobs:
   docs:
     runs-on: ubuntu-latest
