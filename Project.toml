@@ -1,0 +1,15 @@
+name = "SimpliAtmos"
+uuid = "ab37e03a-757d-4c43-905d-942e52329f9d"
+version = "0.1.0"
+
+[deps]
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+ClimaCore = "d414da3d-4745-48bb-8d80-42e94e092884"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
+LoopVectorization = "bdcacae8-1622-11e9-2a5c-532679323890"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+ThreadsX = "ac1d9e8a-700a-412c-b207-f0111f4b6c0d"
+
+[compat]
+Documenter = "1.8.0"
